@@ -26,7 +26,7 @@ function App() {
   
 
   const handleButton = (actBtn) => {
-    setActiveBtn(actBtn)
+    // setActiveBtn(actBtn)
   }
 
   const handleInput = event=>{
@@ -104,8 +104,8 @@ function App() {
         <div className='main-card'>
           <div className='card'>
             <div className='buttons'>
-            <button className={activeBtn==="detect"?"active":''} onClick={() => handleButton('detect')}>Detect language</button>
-            <button className={activeBtn==="english"?"active":''} onClick={() => handleButton('english')}>English</button>
+            {/* <button className={activeBtn==="detect"?"active":''} onClick={() => handleButton('detect')}>Detect language</button> */}
+            <button className={activeBtn==="english"?"active":''} onClick={() => handleButton('english')}>{languages[fromLan]}</button>
             <select 
               value={languages[fromLan]}
               id="fromLan"
@@ -135,7 +135,7 @@ function App() {
           </div>
           <div className='card'>
             <div className='buttons'>
-            <button className={"active"} >French</button>
+            <button className={"active"} >{languages[toLan]}</button>
             <select 
               value={languages[toLan]}
               id="toLan"
@@ -147,8 +147,7 @@ function App() {
             </select>
             </div>
             <hr/>
-            <textarea disabled placeholder='Translated Text will show Here!' value={toValue}/>
-            <p className='length'>{count}/{maxLength}</p>
+            <textarea className='to-text-area' disabled placeholder='Translated Text will show Here!' value={toValue}/>
             <div className='translate-card'>
               <div className='sound-card'>
                 <button className='copy' onClick={handleSoun2}>

@@ -30,6 +30,12 @@ body {
   align-items: center;
   gap: 20px;
 }
+@media only screen and (max-width: 640px) {
+  .main-card {
+    flex-direction: column; 
+    gap: 10px; 
+  }
+}
 .card{
   height: 400px;
   width: 650px;
@@ -79,7 +85,10 @@ textarea{
   color: #F9FAFB;
   font-weight: bold;
   font-size: 25px;
-
+  resize: none;
+}
+.to-text-area{
+  height: 62.5%;
 }
 
 .length{
