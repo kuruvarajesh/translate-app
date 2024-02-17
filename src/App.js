@@ -4,6 +4,7 @@ import './App.css';
 import logo from './svg/logo.svg'
 import sound from './svg/sound_max_fill.svg'
 import copy from './svg/Copy.svg'
+import exchange from './svg/exchange-lang.svg'
 import transIcon from './svg/Sort_alfa.svg'
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import languages from './country-languages.json'
@@ -86,12 +87,19 @@ function App() {
  
   }
 
-  const handleFromSelect = (event,name) => {
+  const handleLangSelect = (event,name) => {
     const selectedLanguage = event.target.value
     const selectedLanguageKey = Object.keys(languages).find(key => languages[key] === selectedLanguage);
     console.log(selectedLanguageKey)
     if(name === 'from') setFromLan(selectedLanguageKey)
     else setToLan(selectedLanguageKey)
+  }
+
+  const handleExchange = () => {
+    setFromLan(toLan)
+    setToLan(fromLan)
+    setValue(toValue)
+    setToValue(value)
   }
 
   return (
@@ -109,7 +117,7 @@ function App() {
             <select 
               value={languages[fromLan]}
               id="fromLan"
-              onChange={(event) => handleFromSelect(event,"from")}
+              onChange={(event) => handleLangSelect(event,"from")}
               >
               {Object.keys(languages).map((key)=>(
                 <option className='options' key={key} >{languages[key]}</option>
@@ -134,17 +142,27 @@ function App() {
             </div>
           </div>
           <div className='card'>
-            <div className='buttons'>
+            <div className=' buttons2'>
+              <div className='buttons'>
             <button className={"active"} >{languages[toLan]}</button>
             <select 
               value={languages[toLan]}
               id="toLan"
-              onChange={(event) => handleFromSelect(event,'to')}
+              onChange={(event) => handleLangSelect(event,'to')}
               >
               {Object.keys(languages).map((key)=>(
                 <option className='options' key={key} >{languages[key]}</option>
               ))}
             </select>
+            </div>
+            <div>
+            {/* <button className='exchange-btn'>
+            <img src={exchange} alt="exchange" className='exchange' />
+            </button> */}
+            <button className='copy' onClick={handleExchange}>
+                    <img src={exchange} alt="exchange" />
+                </button>
+            </div>
             </div>
             <hr/>
             <textarea className='to-text-area' disabled placeholder='Translated Text will show Here!' value={toValue}/>
