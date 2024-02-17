@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import axios from 'axios';
 import './App.css';
 import logo from './svg/logo.svg'
 import sound from './svg/sound_max_fill.svg'
@@ -156,9 +155,6 @@ function App() {
             </select>
             </div>
             <div>
-            {/* <button className='exchange-btn'>
-            <img src={exchange} alt="exchange" className='exchange' />
-            </button> */}
             <button className='copy' onClick={handleExchange}>
                     <img src={exchange} alt="exchange" />
                 </button>
