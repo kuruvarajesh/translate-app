@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import logo from './svg/logo.svg'
 import sound from './svg/sound_max_fill.svg'
@@ -23,6 +23,9 @@ function App() {
   const [toLan,setToLan] = useState('fr')
 
 
+  useEffect(()=>{
+    handleTranslate()
+  },[])
   
 
   const handleButton = (actBtn) => {
@@ -78,11 +81,25 @@ function App() {
   }
 
   const handleTranslate = async() =>{
-    const apiUrl = `https://api.mymemory.translated.net/get?q=${value}&langpair=${fromLan}|${toLan}`
-    const res = await fetch(apiUrl)
-    const data = await res.json()
-    console.log(data.responseData.translatedText)
-    setToValue(data.responseData.translatedText)
+
+    // const apiUrl = `https://api.mymemory.translated.net/get?q=${value}&langpair=${fromLan}|${toLan}`
+    // const res = await fetch(apiUrl)
+    // const data = await res.json()
+    // console.log(data.responseData.translatedText)
+    // setToValue(data.responseData.translatedText)
+
+    fetch(`https://api.mymemory.translated.net/get?q=${value}&langpair=${fromLan}|${toLan}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      setToValue(data.responseData.translatedText)
+
+    })
+    .catch(error => {
+      console.log(error)
+    })
+ 
+
  
   }
 
@@ -124,7 +141,7 @@ function App() {
             </select>
             </div>
             <hr/>
-            <textarea placeholder='Enter Here!' onChange={handleInput} value={value}/>
+            <textarea placeholder='Enter Here!' onChange={handleInput} value={value} maxLength={500}/>
 
             <p className='length'>{count}/{maxLength}</p>
             <div className='translate-card'>
